@@ -8,6 +8,7 @@ export default function TodoItem({
   handleDelete,
   id,
   handleEdit,
+  updated,
 }) {
   let myClass = "";
   if (status) {
@@ -16,7 +17,10 @@ export default function TodoItem({
   return (
     <div onClick={() => handleToggle(id)} className={styles.todoItem}>
       <p className={styles.todoTitle + " " + myClass}>{title}</p>
-      <p className={styles.todoBody + " " + myClass}>{body}</p>
+      <p className={styles.todoBody + " " + myClass}>
+        {body}
+        {updated && <span> (Updated)</span>}
+      </p>
       <button onClick={(event) => handleEdit(id, event)}>Edit</button>
       <button
         className={styles.deleteTodo}

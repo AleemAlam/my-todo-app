@@ -3,6 +3,7 @@
   text-align: left;
   cursor: pointer;
 }
+
 .todoItem > * {
   border-right: 1px solid lightgray;
   padding: 20px;
@@ -13,6 +14,10 @@
 }
 .todoBody {
   flex: 3;
+}
+.todoBody > span {
+  color: gray;
+  font-size: 12px;
 }
 .todoItem > button {
   height: 50px;

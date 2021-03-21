@@ -5,6 +5,7 @@ export default function TodoInput({
   id,
   title,
   body,
+  error,
   handleClick,
 }) {
   return (
@@ -32,6 +33,13 @@ export default function TodoInput({
           <button className={styles.addBtn}>Add</button>
         )}
       </form>
+      {error && (
+        <p
+          style={{ color: "red", fontSize: "14px", margin: "0px 0px 10px 5px" }}
+        >
+          All feilds are required *
+        </p>
+      )}
     </div>
   );
 }

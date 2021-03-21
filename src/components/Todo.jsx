@@ -14,6 +14,7 @@ function Todo() {
   const [data, setData] = React.useState(formData);
   const [task, setTask] = React.useState([]);
   const [showCompleted, setShowCompleted] = React.useState(false);
+  const [error, setError] = React.useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,20 +25,25 @@ function Todo() {
   };
   const handleClick = (e, id = 0) => {
     e.preventDefault();
-
-    let payload;
-    if (id !== 0) {
-      payload = {
-        ...data,
-      };
+    if (data.title.length > 0 && data.body.length > 0) {
+      let payload;
+      if (id !== 0) {
+        payload = {
+          ...data,
+          updated: true,
+        };
+      } else {
+        payload = {
+          ...data,
+          id: uuid(),
+        };
+      }
+      setTask([...task, payload]);
+      setData(formData);
+      setError(false);
     } else {
-      payload = {
-        ...data,
-        id: uuid(),
-      };
+      setError(true);
     }
-    setTask([...task, payload]);
-    setData(formData);
   };
 
   const handleToggle = (id) => {
@@ -70,6 +76,7 @@ function Todo() {
         handleChange={handleChange}
         handleClick={handleClick}
         {...data}
+        error={error}
       />
       {task
         .filter((item) => !item.status)
